@@ -29,3 +29,32 @@ test('body bounded without length',async()=>{const r=Readable.from([Buffer.alloc
 
 test('generic BlobError duplicate verified by read',async()=>{const s=fakeStore(),v=validateRsvp(input(),now);await createResponse(s,v,now);s.put=async()=>{const e=new Error('Vercel Blob: This blob already exists');e.name='BlobError';throw e;};assert.equal((await createResponse(s,v,now)).duplicate,true);});
 test('failed write with absent stored record remains failure',async()=>{const s={put:async()=>{throw new Error('offline');},get:async()=>null};await assert.rejects(createResponse(s,validateRsvp(input(),now)));});
+
+test('guest list survives a transient private Blob read failure',async()=>{
+ const record={receivedAt:'2026-10-10T00:00:00Z',guests:['Test fixture'],guestCount:1};
+ let calls=0;
+ const store={list:async()=>({blobs:[{pathname:'rsvps/test.json'}],hasMore:false}),get:async()=>{if(++calls===1)throw Error('Failed to fetch blob: 503 Service Unavailable');return {stream:new Blob([JSON.stringify(record)]).stream()};}};
+ assert.deepEqual(await listResponses(store),[record]);assert.equal(calls,2);
+});
+test('guest list preserves permanent private storage access failures',async()=>{
+ let calls=0;
+ const store={list:async()=>({blobs:[{pathname:'rsvps/test.json'}],hasMore:false}),get:async()=>{calls++;throw Error('Failed to fetch blob: 403 Forbidden');}};
+ await assert.rejects(listResponses(store),/403 Forbidden/);assert.equal(calls,1);
+});
+test('guest list stops after bounded transient read attempts',async()=>{
+ let calls=0;
+ const store={list:async()=>({blobs:[{pathname:'rsvps/test.json'}],hasMore:false}),get:async()=>{calls++;throw Error('Failed to fetch blob: 503 Service Unavailable');}};
+ await assert.rejects(listResponses(store),/503 Service Unavailable/);assert.equal(calls,3);
+});
+
+test('successful admin login remains signed in when guest loading is temporarily unavailable',async()=>{
+ const {readFile}=await import('node:fs/promises');const {runInNewContext}=await import('node:vm');
+ const nodes=Object.fromEntries(['admin-login','admin-dashboard','admin-status','responses','password','guest-search','refresh','logout','totals'].map(id=>[id,{hidden:id==='admin-dashboard',value:'test-fixture',textContent:'',handlers:{},replaceChildren(){},addEventListener(event,fn){this.handlers[event]=fn;}}]));
+ const button={disabled:false};nodes['admin-login'].querySelector=()=>button;
+ let calls=0;const fetch=async()=>{const status=[401,200,503][calls++];return {status,ok:status===200,json:async()=>status===200?{ok:true}:{message:'temporary failure'}};};
+ runInNewContext(await readFile('public/js/admin.js','utf8'),{document:{querySelector:s=>nodes[s.slice(1)]},fetch,confirm:()=>false});
+ await new Promise(resolve=>setImmediate(resolve));
+ await nodes['admin-login'].handlers.submit({preventDefault(){}});
+ assert.equal(nodes['admin-login'].hidden,true);assert.equal(nodes['admin-dashboard'].hidden,false);
+ assert.match(nodes['admin-status'].textContent,/Обнови/);
+});
