@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {takeLoginSlot} from '../../lib/rate-limit.js';
+const make=()=>{const m=new Map();return{m,async put(p,b){if(m.has(p))throw Error('already exists');m.set(p,b);},async get(p){return m.has(p)?{stream:new Blob([m.get(p)]).stream()}:null;}}};const secret='test'.repeat(12);
+test('login limiter survives separate requests and protects raw IP',async()=>{const s=make();await takeLoginSlot(s,'192.0.2.1',secret,20001);await assert.rejects(takeLoginSlot(s,'192.0.2.1',secret,29999),e=>e.status===429);await takeLoginSlot(s,'192.0.2.1',secret,30000);assert.ok(![...s.m.keys()].join().includes('192.0.2.1'));});
+test('rate storage failure is fail closed, not successful login',async()=>{await assert.rejects(takeLoginSlot({put:async()=>{throw Error('offline');},get:async()=>null},'ip',secret,20000));});

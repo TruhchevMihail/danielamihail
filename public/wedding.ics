@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Daniela and Mihail//Wedding//BG
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:daniela-mihail-29082027@wedding
+DTSTAMP:20261009T200000Z
+DTSTART:20270829T083000Z
+DTEND:20270829T210000Z
+SUMMARY:Сватбата на Даниела и Михаил
+LOCATION:Mansion Plovdiv
+DESCRIPTION:11:30 Крадене на булката\n13:00 Църковен брак\n17:30 Сватбен коктейл и изнесен граждански ритуал в Mansion Plovdiv.
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,62 @@
+[
+  {
+    "path": "public/assets/sans.ttf",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/sans.ttf",
+    "size": 94972,
+    "sha256": "a13d9b41b0a471ce58f0e46d377fa3cc76615e4632c3b15eb397caadf7a13f0a"
+  },
+  {
+    "path": "public/assets/couple-original.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/couple-original.png",
+    "size": 3207882,
+    "sha256": "1eba50a0803fea345ba0afe0c0bb85d9669f5d80a444eb41669a475dc2587647"
+  },
+  {
+    "path": "public/assets/serif.ttf",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/serif.ttf",
+    "size": 290236,
+    "sha256": "6d37a86241a25d63f8fe6018b4c083449886b7165c1acb15edd0f574f690ecf7"
+  },
+  {
+    "path": "public/assets/serif-italic.ttf",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/serif-italic.ttf",
+    "size": 293036,
+    "sha256": "0b9a8a33cfaa624d30f70f9b6686da769b319b8c37a55af16e29fef690108bbf"
+  },
+  {
+    "path": "public/assets/rococo-envelope-v2.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/rococo-envelope-v2.png",
+    "size": 2868387,
+    "sha256": "72f743e7495c3f1a778de61d6a9ea5367950502bf00c52f59f73a21d0d0233ac"
+  },
+  {
+    "path": "public/assets/rococo-envelope-white-v5.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/rococo-envelope-white-v5.png",
+    "size": 2362373,
+    "sha256": "43678cba2699c3fb3712d418e9e757d8b6e7cdffd7438ada869322ec58d6761f"
+  },
+  {
+    "path": "public/assets/ivory-satin.webp",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/ivory-satin.webp",
+    "size": 247568,
+    "sha256": "46337c025970852535c8f0b55a3df281d8b2a857e1f77bb4e9a0d98701ab9495"
+  },
+  {
+    "path": "public/assets/pearl-white-card-v4.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/pearl-white-card-v4.png",
+    "size": 2830722,
+    "sha256": "ba5f958a0f4ae0f6330d0cbb43180c6789fa68de680c8610c204e32b09c46b3e"
+  },
+  {
+    "path": "public/assets/pearl-invitation-hero-v3.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/pearl-invitation-hero-v3.png",
+    "size": 3188059,
+    "sha256": "589b9674635a82d2fab20aa5ffb389ab023f870d36d299c6db6f293f14dc80d7"
+  },
+  {
+    "path": "public/assets/pearl-white-background-v4.png",
+    "url": "https://daniela-mihail-wedding-l0fl2my40-truhchevmihails-projects.vercel.app/assets/pearl-white-background-v4.png",
+    "size": 2480903,
+    "sha256": "f500792862d3ebd939e16e49e8aff18af56a258e5f035f8ad75021942470dd24"
+  }
+]

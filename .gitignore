@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+# Binary assets are restored from the checked manifest during builds.
+public/assets/*.png
+public/assets/*.webp
+public/assets/*.ttf
