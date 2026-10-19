@@ -1,1 +1,1 @@
-import React from 'react';import {createRoot} from 'react-dom/client';import Wedding from './Wedding';import './style.css';createRoot(document.getElementById('root')!).render(<Wedding/>);
+import React from 'react';import {createRoot} from 'react-dom/client';import {Analytics} from '@vercel/analytics/react';import Wedding from './Wedding';import './style.css';createRoot(document.getElementById('root')!).render(<><Wedding/><Analytics/></>);
