@@ -1,4 +1,13 @@
 import test from 'node:test';
+import {readFileSync} from 'node:fs';
+
+test('dress code shows the approved palette and black suit with white shirt',()=>{
+ const source=readFileSync(new URL('../../src/Wedding.tsx',import.meta.url),'utf8');
+ const section=source.match(/<section id="style"[\s\S]*?<\/section>/)?.[0]||'';
+ for(const label of ['За дамите','За господата','Пепел от рози','Нежно розово','Пепелно лилаво','Салвия','Лавандула','Пудрено синьо','Таупе','Златист блясък','Сребрист блясък','Черен костюм с бяла риза.','Бялото запазваме за булката.'])assert.ok(section.includes(label),`Missing dress code: ${label}`);
+ assert.equal((section.match(/className="dress-swatch(?: |")/g)||[]).length,9);
+ assert.doesNotMatch(section,/Няма задължителен дрескод|шампанско/i);
+});
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {WEDDING} from '../../public/config.js';
